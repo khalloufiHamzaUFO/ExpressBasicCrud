@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+
+        h1 {
+            margin-top: 20px; 
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; 
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+        button.delete-btn {
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-right: 5px; 
+        }
+
+        button.update-btn {
+            background-color: #FFD700; 
+            color: #000; 
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            
+        }
+
+        button:hover {
+            background-color: #b71c1c;
+        }
+         button:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+<h1>List Contact</h1>
+<h1>Search Contacts</h1>
+    <form action="/contact/search" method="get">
+        <label for="fullName">Enter Name:</label>
+        <input type="text" id="fullName" name="fullName">
+        <input type="submit" value="Search">
+    </form>
+    <ul>
+        {% for contact in contacts %}
+            <li>{{ contact.FullName }} - {{ contact.Phone }}</li>
+        {% endfor %}
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in cnt %}
+                <tr>
+                    <td>{{ contact.FullName }}</td>
+                    <td>{{ contact.Phone }}</td>
+                    <td style="display: flex; gap: 10px;">
+                        <form action="/contact/delete/{{ contact._id }}" method="post">
+                            <button type="submit" class="delete-btn" style="font-weight: bold;">Delete</button>
+                        </form>
+                        <form action="/contact/edit/{{ contact._id }}" method="get">
+                            <button type="submit" class="update-btn" style="font-weight: bold;">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        <h1>Ajouter un contact</h1>
+    <form action="/contact/new" method="post">
+        <label for="fullName">Nom complet :</label>
+        <input type="text" id="fullName" name="FullName"><br><br>
+        <label for="phone">Téléphone :</label>
+        <input type="text" id="phone" name="Phone"><br><br>
+        <input type="submit" value="Ajouter">
+    </form>
+</body>
+</html>

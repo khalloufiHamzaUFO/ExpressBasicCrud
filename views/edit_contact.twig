@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+           
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="/contact/update/{{ contact._id }}" method="post">
+    <h1>Edit Contact</h1>
+
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="FullName" value="{{ contact.FullName }}"><br><br>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="Phone" value="{{ contact.Phone }}"><br><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
